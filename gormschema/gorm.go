@@ -54,7 +54,8 @@ func (l *Loader) Load(models ...any) (string, error) {
 		return "", fmt.Errorf("unsupported engine: %s", l.dialect)
 	}
 	db, err := gorm.Open(di, &gorm.Config{
-		NamingStrategy: schema.NamingStrategy{SingularTable: true},
+		NamingStrategy:                           schema.NamingStrategy{SingularTable: true},
+		DisableForeignKeyConstraintWhenMigrating: true,
 	})
 	if err != nil {
 		return "", err
