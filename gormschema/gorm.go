@@ -10,6 +10,7 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/schema"
 )
 
 // New returns a new Loader.
@@ -52,7 +53,9 @@ func (l *Loader) Load(models ...any) (string, error) {
 	default:
 		return "", fmt.Errorf("unsupported engine: %s", l.dialect)
 	}
-	db, err := gorm.Open(di, &gorm.Config{})
+	db, err := gorm.Open(di, &gorm.Config{
+		NamingStrategy: schema.NamingStrategy{SingularTable: true},
+	})
 	if err != nil {
 		return "", err
 	}

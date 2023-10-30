@@ -1,4 +1,4 @@
-module ariga.io/atlas-provider-gorm
+module sean8694/atlas-provider-gorm
 
 go 1.20
 
