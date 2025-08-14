@@ -8,11 +8,17 @@ import (
 	{{- range .Imports }}
 		"{{ . }}"
 	{{- end}}
-	"ariga.io/atlas-provider-gorm/gormschema"
+	"github.com/sean8694/atlas-provider-gorm/gormschema"
+    "gorm.io/gorm"
+    "gorm.io/gorm/schema"
 )
 
 func main() {
 	stmts, err := gormschema.New("{{ .Dialect }}"
+			, gormschema.WithConfig(&gorm.Config{
+				NamingStrategy:                           schema.NamingStrategy{SingularTable: true},
+				DisableForeignKeyConstraintWhenMigrating: true,
+			})
 		{{- if eq .Dialect "sqlserver" -}}
 			, gormschema.WithStmtDelimiter("\nGO")
 		{{- end -}}

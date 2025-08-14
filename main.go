@@ -12,9 +12,9 @@ import (
 	"strings"
 	"text/template"
 
-	"ariga.io/atlas-provider-gorm/gormschema"
 	"ariga.io/atlas/sdk/tmplrun"
 	"github.com/alecthomas/kong"
+	"github.com/sean8694/atlas-provider-gorm/gormschema"
 	"golang.org/x/tools/go/packages"
 )
 
